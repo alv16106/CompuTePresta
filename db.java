@@ -95,7 +95,26 @@ public class db {
 		        }
 		    }
 	
-	
+	public void agregarElemento(String descripcion, String tiempoPrestamo, String categoria){
+		try
+		{
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Connection con = DriverManager.getConnection(url, user, password);
+            Statement stt = con.createStatement();
+            
+            //BASE A UTILIZAR
+            stt.execute("USE CompuTePresta");
+            stt.execute("INSERT INTO articulo (idarticulo, descripcion, tiempoDePrestamo, categoria, idprestamista) VALUES" + 
+             "('0', '"+descripcion+"','"+tiempoPrestamo+"','"+categoria+"')");
+            stt.close();
+            con.close();
+			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 	
 	/**
 	 * @param carnet
