@@ -2,6 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Carlos/Desktop/javax.mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/rodri_000/Documents/POO/CompuTePresta/CompuTePresta/librerias/javax.mail.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>
