@@ -17,11 +17,13 @@ public class db {
 	String url;
 	String user;
 	String password;
+	String prestamista;
 	
 	public db(){
 		url="jdbc:mysql://localhost:3306/";
 		user="root";
 		password="";
+		prestamista = "";
 	}
 	
 	
@@ -49,6 +51,8 @@ public class db {
             {
                 log++;
                 System.out.println(res.getString("nombre"));
+                this.prestamista=res.getString("carne");
+                System.out.println(prestamista);
             }
             if (log==1){
                 res.close();
@@ -95,7 +99,7 @@ public class db {
 		        }
 		    }
 	
-	public void agregarElemento(String descripcion, String tiempoPrestamo, String categoria){
+	public void agregarElemento(String descripcion, String tiempoPrestamo, String categoria,String prestamista){
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -105,7 +109,8 @@ public class db {
             //BASE A UTILIZAR
             stt.execute("USE CompuTePresta");
             stt.execute("INSERT INTO articulo (idarticulo, descripcion, tiempoDePrestamo, categoria, idprestamista) VALUES" + 
-             "('0', '"+descripcion+"','"+tiempoPrestamo+"','"+categoria+"')");
+             "('0', '"+descripcion+"','"+tiempoPrestamo+"','"+categoria+"','"+Integer.parseInt(prestamista)+"')");
+            //Integer.parseInt(this.prestamista)
             stt.close();
             con.close();
 			

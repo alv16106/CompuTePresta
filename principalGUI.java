@@ -30,6 +30,7 @@ public class principalGUI extends JFrame {
 	private JTextField txtCarnetPerfil;
 	private JPasswordField txtContraPerfil;
 	private db base;
+	private JTextField txtCarnePedir;
 
 	/**
 	 * Launch the application.
@@ -99,9 +100,28 @@ public class principalGUI extends JFrame {
 		panelPedir.add(spinnerDias);
 		
 		JButton btnPedir = new JButton("Pedir");
+		btnPedir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String categoria=comboBoxCategoria.getSelectedItem().toString();
+				String descripcion= txtDescripcion.getText();
+				String tiempoPrestamo = spinnerDias.getValue().toString();
+				String carne1=txtCarnePedir.getText();
+				
+				base.agregarElemento(descripcion, tiempoPrestamo, categoria,carne1);
+			}
+		});
 		btnPedir.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnPedir.setBounds(230, 256, 228, 50);
 		panelPedir.add(btnPedir);
+		
+		txtCarnePedir = new JTextField();
+		txtCarnePedir.setBounds(508, 209, 86, 20);
+		panelPedir.add(txtCarnePedir);
+		txtCarnePedir.setColumns(10);
+		
+		JLabel lblCarnePedir = new JLabel("Carn\u00E9:");
+		lblCarnePedir.setBounds(445, 212, 46, 14);
+		panelPedir.add(lblCarnePedir);
 		
 		JPanel panelDar = new JPanel();
 		tabbedPane.addTab("Dar", null, panelDar, null);
