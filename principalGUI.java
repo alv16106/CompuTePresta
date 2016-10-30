@@ -17,6 +17,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.JPasswordField;
+import java.awt.Color;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.SwingConstants;
 
 public class principalGUI extends JFrame {
 
@@ -64,42 +68,53 @@ public class principalGUI extends JFrame {
 		setContentPane(contentPane);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setForeground(new Color(0, 0, 0));
+		tabbedPane.setBackground(new Color(173, 255, 47));
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 		
 		JPanel panelPedir = new JPanel();
+		panelPedir.setBorder(new CompoundBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null), null));
+		panelPedir.setBackground(new Color(255, 127, 80));
 		tabbedPane.addTab("Pedir", null, panelPedir, null);
 		panelPedir.setLayout(null);
 		
 		JLabel lblCategoria = new JLabel("Categor\u00EDa:");
-		lblCategoria.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblCategoria.setBounds(127, 40, 68, 14);
+		lblCategoria.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCategoria.setForeground(new Color(0, 0, 0));
+		lblCategoria.setBackground(new Color(0, 0, 0));
+		lblCategoria.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 15));
+		lblCategoria.setBounds(136, 38, 67, 20);
 		panelPedir.add(lblCategoria);
 		
 		JLabel lblDescripcion = new JLabel("Descripci\u00F3n:");
-		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblDescripcion.setBounds(114, 77, 81, 20);
+		lblDescripcion.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 15));
+		lblDescripcion.setBounds(136, 75, 81, 20);
 		panelPedir.add(lblDescripcion);
 		
 		JLabel lblTiempoP = new JLabel("Tiempo de Prestamo:");
-		lblTiempoP.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblTiempoP.setBounds(45, 210, 150, 14);
+		lblTiempoP.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 15));
+		lblTiempoP.setBounds(122, 210, 133, 14);
 		panelPedir.add(lblTiempoP);
 		
 		JComboBox comboBoxCategoria = new JComboBox();
+		comboBoxCategoria.setBackground(new Color(139, 0, 139));
+		comboBoxCategoria.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 14));
 		comboBoxCategoria.setModel(new DefaultComboBoxModel(new String[]{"Libros","Tutoria","Electronicos","Utiles"}));
 		comboBoxCategoria.setBounds(230, 38, 96, 20);
 		panelPedir.add(comboBoxCategoria);
 		
 		txtDescripcion = new JTextField();
+		txtDescripcion.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 11));
 		txtDescripcion.setBounds(230, 75, 261, 107);
 		panelPedir.add(txtDescripcion);
 		txtDescripcion.setColumns(10);
 		
 		JSpinner spinnerDias = new JSpinner();
-		spinnerDias.setBounds(230, 208, 61, 20);
+		spinnerDias.setBounds(265, 208, 61, 20);
 		panelPedir.add(spinnerDias);
 		
-		JButton btnPedir = new JButton("Pedir");
+		JButton btnPedir = new JButton("\u00A1Pedir a la comunidad!");
+		btnPedir.setForeground(new Color(0, 0, 255));
 		btnPedir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String categoria=comboBoxCategoria.getSelectedItem().toString();
@@ -110,44 +125,47 @@ public class principalGUI extends JFrame {
 				base.agregarElemento(descripcion, tiempoPrestamo, categoria,carne1);
 			}
 		});
-		btnPedir.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnPedir.setBounds(230, 256, 228, 50);
+		btnPedir.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 15));
+		btnPedir.setBounds(229, 256, 218, 29);
 		panelPedir.add(btnPedir);
 		
 		txtCarnePedir = new JTextField();
-		txtCarnePedir.setBounds(508, 209, 86, 20);
+		txtCarnePedir.setBounds(405, 208, 86, 20);
 		panelPedir.add(txtCarnePedir);
 		txtCarnePedir.setColumns(10);
 		
 		JLabel lblCarnePedir = new JLabel("Carn\u00E9:");
-		lblCarnePedir.setBounds(445, 212, 46, 14);
+		lblCarnePedir.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 15));
+		lblCarnePedir.setBounds(359, 210, 46, 14);
 		panelPedir.add(lblCarnePedir);
 		
 		JPanel panelDar = new JPanel();
+		panelDar.setBackground(new Color(240, 230, 140));
 		tabbedPane.addTab("Dar", null, panelDar, null);
 		panelDar.setLayout(null);
 		
 		JLabel lblCategoriaDar = new JLabel("Categor\u00EDa:");
-		lblCategoriaDar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblCategoriaDar.setBounds(151, 240, 64, 26);
+		lblCategoriaDar.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 15));
+		lblCategoriaDar.setBounds(236, 231, 64, 26);
 		panelDar.add(lblCategoriaDar);
 		
 		JComboBox comboBoxCategoriaDar = new JComboBox();
+		comboBoxCategoriaDar.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 15));
 		comboBoxCategoriaDar.setModel(new DefaultComboBoxModel(new String[]{"Libros","Tutoria","Electronicos","Utiles"}));
-		comboBoxCategoriaDar.setBounds(240, 244, 114, 20);
+		comboBoxCategoriaDar.setBounds(336, 234, 114, 20);
 		panelDar.add(comboBoxCategoriaDar);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(362, 11, -312, 121);
 		panelDar.add(scrollPane);
 		
-		JButton btnBuscar = new JButton("Buscar");
+		JButton btnBuscar = new JButton("\u00A1Explorar los pedidos!");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnBuscar.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnBuscar.setBounds(390, 221, 133, 63);
+		btnBuscar.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 15));
+		btnBuscar.setBounds(236, 268, 214, 26);
 		panelDar.add(btnBuscar);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -158,45 +176,47 @@ public class principalGUI extends JFrame {
 		scrollPane_1.setViewportView(table);
 		
 		JPanel panelPerfil = new JPanel();
+		panelPerfil.setBackground(new Color(222, 184, 135));
 		tabbedPane.addTab("Perfil", null, panelPerfil, null);
 		panelPerfil.setLayout(null);
 		
 		JLabel lblNombrePerfil = new JLabel("Nombre:");
-		lblNombrePerfil.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNombrePerfil.setBounds(58, 106, 68, 42);
+		lblNombrePerfil.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
+		lblNombrePerfil.setBounds(58, 29, 68, 42);
 		panelPerfil.add(lblNombrePerfil);
 		
 		JLabel lblContraPerfil = new JLabel("Contrase\u00F1a:");
-		lblContraPerfil.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblContraPerfil.setBounds(58, 167, 95, 14);
+		lblContraPerfil.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
+		lblContraPerfil.setBounds(37, 102, 95, 14);
 		panelPerfil.add(lblContraPerfil);
 		
 		JLabel lblCorreoPerfil = new JLabel("Correo:");
-		lblCorreoPerfil.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblCorreoPerfil.setBounds(58, 198, 68, 34);
+		lblCorreoPerfil.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
+		lblCorreoPerfil.setBounds(330, 92, 68, 34);
 		panelPerfil.add(lblCorreoPerfil);
 		
 		JLabel lblCarreraPerfil = new JLabel("Carrera:");
-		lblCarreraPerfil.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblCarreraPerfil.setBounds(58, 243, 68, 34);
+		lblCarreraPerfil.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
+		lblCarreraPerfil.setBounds(58, 148, 68, 34);
 		panelPerfil.add(lblCarreraPerfil);
 		
 		txtNombrePerfil = new JTextField();
-		txtNombrePerfil.setBounds(192, 120, 150, 20);
+		txtNombrePerfil.setBounds(149, 43, 150, 20);
 		panelPerfil.add(txtNombrePerfil);
 		txtNombrePerfil.setColumns(10);
 		
 		txtCorreoPerfil = new JTextField();
-		txtCorreoPerfil.setBounds(193, 208, 150, 20);
+		txtCorreoPerfil.setBounds(399, 101, 150, 20);
 		panelPerfil.add(txtCorreoPerfil);
 		txtCorreoPerfil.setColumns(10);
 		
 		txtCarreraPerfil = new JTextField();
-		txtCarreraPerfil.setBounds(193, 253, 150, 20);
+		txtCarreraPerfil.setBounds(149, 158, 150, 20);
 		panelPerfil.add(txtCarreraPerfil);
 		txtCarreraPerfil.setColumns(10);
 		
 		JButton btnEditarPerfil = new JButton("Editar Perfil");
+		btnEditarPerfil.setForeground(new Color(0, 0, 128));
 		btnEditarPerfil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//
@@ -210,22 +230,28 @@ public class principalGUI extends JFrame {
 				base.editarPerfil(carne, password, nombre, correo, carrera);
 			}
 		});
-		btnEditarPerfil.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnEditarPerfil.setBounds(433, 125, 149, 64);
+		btnEditarPerfil.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 17));
+		btnEditarPerfil.setBounds(451, 261, 149, 26);
 		panelPerfil.add(btnEditarPerfil);
 		
 		txtCarnetPerfil = new JTextField();
 		txtCarnetPerfil.setColumns(10);
-		txtCarnetPerfil.setBounds(192, 21, 150, 20);
+		txtCarnetPerfil.setBounds(399, 43, 150, 20);
 		panelPerfil.add(txtCarnetPerfil);
 		
 		JLabel label = new JLabel("Carn\u00E9:");
-		label.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		label.setBounds(58, 11, 59, 34);
+		label.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
+		label.setBounds(330, 33, 59, 34);
 		panelPerfil.add(label);
 		
 		txtContraPerfil = new JPasswordField();
-		txtContraPerfil.setBounds(192, 167, 150, 20);
+		txtContraPerfil.setBounds(149, 101, 150, 20);
 		panelPerfil.add(txtContraPerfil);
+		
+		JLabel lblalgoNoEsta = new JLabel("\u00BFAlgo no esta bien? \u00A1se puede editar tu perfil aqu\u00ED! -->");
+		lblalgoNoEsta.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 15));
+		lblalgoNoEsta.setForeground(new Color(0, 0, 139));
+		lblalgoNoEsta.setBounds(131, 268, 315, 14);
+		panelPerfil.add(lblalgoNoEsta);
 	}
 }

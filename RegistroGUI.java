@@ -16,6 +16,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.SystemColor;
 
 public class RegistroGUI extends JFrame {
 
@@ -54,61 +56,69 @@ public class RegistroGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 668, 508);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblCrearCuenta = new JLabel("Crear cuenta");
-		lblCrearCuenta.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblCrearCuenta.setBounds(174, 41, 174, 20);
+		JLabel lblCrearCuenta = new JLabel("\u00A1Bienvenido a");
+		lblCrearCuenta.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 25));
+		lblCrearCuenta.setBounds(161, 41, 139, 20);
 		contentPane.add(lblCrearCuenta);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setBounds(48, 106, 69, 20);
+		lblNombre.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
+		lblNombre.setBounds(148, 130, 69, 20);
 		contentPane.add(lblNombre);
 		
 		JLabel lblNewLabel = new JLabel("Contrase\u00F1a:");
-		lblNewLabel.setBounds(48, 155, 85, 20);
+		lblNewLabel.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
+		lblNewLabel.setBounds(125, 181, 85, 20);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblL = new JLabel("Carn\u00E9:");
-		lblL.setBounds(48, 204, 69, 20);
+		lblL.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
+		lblL.setBounds(159, 227, 51, 20);
 		contentPane.add(lblL);
 		
 		JLabel lblCorreo = new JLabel("Correo:");
-		lblCorreo.setBounds(48, 247, 69, 20);
+		lblCorreo.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
+		lblCorreo.setBounds(159, 274, 51, 20);
 		contentPane.add(lblCorreo);
 		
 		JLabel lblCarrera = new JLabel("Carrera:");
-		lblCarrera.setBounds(48, 296, 69, 20);
+		lblCarrera.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
+		lblCarrera.setBounds(148, 331, 59, 20);
 		contentPane.add(lblCarrera);
 		
 		textField = new JTextField();
-		textField.setBounds(184, 103, 222, 26);
+		textField.setBounds(243, 129, 222, 26);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(184, 152, 222, 26);
+		textField_1.setBounds(243, 178, 222, 26);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(184, 201, 222, 26);
+		textField_2.setBounds(243, 226, 222, 26);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(184, 244, 222, 26);
+		textField_3.setBounds(243, 273, 222, 26);
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(184, 293, 222, 26);
+		textField_4.setBounds(243, 330, 222, 26);
 		contentPane.add(textField_4);
 		textField_4.setColumns(10);
 		
 		JButton btnRegistrate = new JButton("Registrate");
+		btnRegistrate.setBackground(new Color(0, 153, 255));
+		btnRegistrate.setForeground(new Color(0, 0, 0));
 		btnRegistrate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int carne=Integer.parseInt(textField_2.getText());
@@ -123,9 +133,21 @@ public class RegistroGUI extends JFrame {
 				//reg.setState(reg.ICONIFIED);
 			}
 		});
-		btnRegistrate.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnRegistrate.setBounds(452, 184, 146, 59);
+		btnRegistrate.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
+		btnRegistrate.setBounds(465, 408, 146, 31);
 		contentPane.add(btnRegistrate);
+		
+		JLabel lblComputepresta = new JLabel(" CompuTePresta!");
+		lblComputepresta.setForeground(new Color(0, 0, 255));
+		lblComputepresta.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 25));
+		lblComputepresta.setBounds(298, 38, 167, 26);
+		contentPane.add(lblComputepresta);
+		
+		JLabel lblLoPrimeroSer = new JLabel("\u00BFtodav\u00EDa sin cuenta? ...");
+		lblLoPrimeroSer.setForeground(new Color(0, 153, 102));
+		lblLoPrimeroSer.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 15));
+		lblLoPrimeroSer.setBounds(242, 72, 153, 14);
+		contentPane.add(lblLoPrimeroSer);
 	}
 
 }

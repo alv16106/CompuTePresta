@@ -18,7 +18,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
-
+import javax.swing.ImageIcon;
 /**
  * @author rodri_000
  *
@@ -36,7 +36,7 @@ public class InicioGU extends JFrame {
 	private JPasswordField txtPassword;
 	private RegistroGUI reg;
 	private principalGUI principal;
-	
+
 
 	
 	public static void main(String[] args) {
@@ -56,6 +56,8 @@ public class InicioGU extends JFrame {
 	 * Create the frame.
 	 */
 	public InicioGU() {
+		setBackground(Color.WHITE);
+		setForeground(Color.RED);
 		db base = new db();
 		RegistroGUI reg = new RegistroGUI();
 		principalGUI principal=new principalGUI();
@@ -63,26 +65,29 @@ public class InicioGU extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 627, 447);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.ORANGE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		txtUsuario = new JTextField();
-		txtUsuario.setBounds(200, 93, 176, 26);
+		txtUsuario.setBackground(Color.WHITE);
+		txtUsuario.setBounds(270, 96, 176, 26);
 		contentPane.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
 		JLabel lblUsuario = new JLabel("Usuario");
-		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblUsuario.setBounds(74, 96, 69, 20);
+		lblUsuario.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
+		lblUsuario.setBounds(173, 96, 69, 20);
 		contentPane.add(lblUsuario);
 		
 		JLabel lblPassword = new JLabel("Contrase\u00F1a");
-		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblPassword.setBounds(74, 138, 100, 20);
+		lblPassword.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
+		lblPassword.setBounds(161, 133, 100, 20);
 		contentPane.add(lblPassword);
 		
 		JButton btnIngresar = new JButton("Ingresar");
+		btnIngresar.setBackground(Color.ORANGE);
 		btnIngresar.addActionListener(/**
 		 * @author rodri_000
 		 *
@@ -102,22 +107,24 @@ public class InicioGU extends JFrame {
 				
 			}
 		});
-		btnIngresar.setFont(new Font("Tahoma", Font.BOLD, 19));
-		btnIngresar.setBounds(74, 257, 127, 60);
+		btnIngresar.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 19));
+		btnIngresar.setBounds(109, 269, 152, 37);
 		contentPane.add(btnIngresar);
 		
 		JButton btnRegistro = new JButton("Registrate");
+		btnRegistro.setBackground(Color.ORANGE);
 		btnRegistro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				reg.setVisible(true);
 				
 			}
 		});
-		btnRegistro.setFont(new Font("Tahoma", Font.BOLD, 19));
-		btnRegistro.setBounds(255, 257, 152, 60);
+		btnRegistro.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 19));
+		btnRegistro.setBounds(349, 269, 152, 37);
 		contentPane.add(btnRegistro);
 		
 		JButton btnOlvidar = new JButton("Olvide mi contrase\u00F1a ");
+		btnOlvidar.setBackground(Color.ORANGE);
 		btnOlvidar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String whatTheUserEntered = JOptionPane.showInputDialog("Ingrese su carne:");
@@ -129,12 +136,13 @@ public class InicioGU extends JFrame {
 			}
 		});
 		btnOlvidar.setForeground(Color.BLUE);
-		btnOlvidar.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnOlvidar.setBounds(94, 187, 223, 29);
+		btnOlvidar.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 16));
+		btnOlvidar.setBounds(184, 186, 223, 29);
 		contentPane.add(btnOlvidar);
 		
 		txtPassword = new JPasswordField();
-		txtPassword.setBounds(200, 135, 176, 26);
+		txtPassword.setBackground(Color.WHITE);
+		txtPassword.setBounds(270, 133, 176, 26);
 		contentPane.add(txtPassword);
 	}
 }
