@@ -1,5 +1,6 @@
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -9,15 +10,16 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.table.DefaultTableModel;
 /**
  * @author 
  *
  */
 public class db {
-	String url;
-	String user;
-	String password;
-	String prestamista;
+	static String url;
+	static String user;
+	static String password;
+	static String prestamista;
 	
 	public db(){
 		url="jdbc:mysql://localhost:3306/";
@@ -70,6 +72,53 @@ public class db {
 			return false;
 		}
 		
+	}
+	
+	static ArrayList<Elemento> ListaElementos(){
+		ArrayList<Elemento> elementos = new ArrayList<Elemento>();
+		try{
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Connection con = DriverManager.getConnection(url, user, password);
+            Statement stt = con.createStatement();
+            
+            //BASE A UTILIZAR
+            stt.execute("USE CompuTePresta");
+            ResultSet res = stt.executeQuery("SELECT * FROM articulo");
+            Elemento reusable = new Elemento();
+            while (res.next()){
+            	reusable.setElemento(res.getString("descripcion"), String.valueOf(res.getInt("tiempoDePrestamo")), res.getString("categoria"), res.getInt("idprestamista"));
+            	elementos.add(reusable);
+            }
+            
+            return elementos;
+		}catch (Exception e){
+			return elementos;
+		}
+        
+	}
+	
+	public DefaultTableModel crearmodelo(){
+		DefaultTableModel model = new DefaultTableModel();
+		Object[] titulos = new Object[4];
+        
+        titulos[0] = "DESCRIPCION";
+        titulos[1] = "Tiempo de prestamo";
+        titulos[2] = "Categoria";
+        titulos[3] = "Carnet del prestamista";
+        model.setColumnIdentifiers(titulos);
+        
+        Object[] rowData = new Object[4];
+        
+        for(int i = 0; i < ListaElementos().size(); i++){
+            
+            rowData[0] = ListaElementos().get(i).getDescripcion();
+             rowData[1] = ListaElementos().get(i).getTiempoPrestamo() + "dias";
+              rowData[2] = ListaElementos().get(i).getCategoria();
+               rowData[3] = ListaElementos().get(i).getPrestamista();
+               
+               model.addRow(rowData);
+        }
+		return model;
 	}
 
 	/**

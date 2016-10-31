@@ -174,6 +174,7 @@ public class principalGUI extends JFrame {
 		
 		table = new JTable();
 		scrollPane_1.setViewportView(table);
+		table.setModel(base.crearmodelo());
 		
 		JPanel panelPerfil = new JPanel();
 		panelPerfil.setBackground(new Color(222, 184, 135));
