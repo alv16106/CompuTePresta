@@ -15,6 +15,8 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.SystemColor;
@@ -22,11 +24,11 @@ import java.awt.SystemColor;
 public class RegistroGUI extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField txtNombre;
+	private JTextField txtContrasena;
+	private JTextField txtCarne;
+	private JTextField txtCorreo;
+	private JTextField txtCarrera;
 	private db base;
 	//private RegistroGUI reg;
 
@@ -91,41 +93,76 @@ public class RegistroGUI extends JFrame {
 		lblCarrera.setBounds(148, 331, 59, 20);
 		contentPane.add(lblCarrera);
 		
-		textField = new JTextField();
-		textField.setBounds(243, 129, 222, 26);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtNombre = new JTextField();
+		txtNombre.setBounds(243, 129, 222, 26);
+		contentPane.add(txtNombre);
+		txtNombre.setColumns(10);
+		txtNombre.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			    char c=e.getKeyChar(); 
+		          if(Character.isDigit(c)) { 
+		              getToolkit().beep(); 
+		              JOptionPane.showMessageDialog(null, "ERROR 1006: SOLO SON PERMITIDAS LAS LETRAS");
+		              e.consume();   
+		          }
+			}
+		});
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(243, 178, 222, 26);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		txtContrasena = new JTextField();
+		txtContrasena.setBounds(243, 178, 222, 26);
+		contentPane.add(txtContrasena);
+		txtContrasena.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(243, 226, 222, 26);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		txtCarne = new JTextField();
+		txtCarne.setBounds(243, 226, 222, 26);
+		contentPane.add(txtCarne);
+		txtCarne.setColumns(10);
+		txtCarne.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+	            char c=e.getKeyChar();  
+	            if(Character.isLetter(c)) { 
+	                getToolkit().beep(); 
+	                JOptionPane.showMessageDialog(null, "ERROR 1001: SOLO SON PERMITIDAS LOS NUMEROS");
+	                e.consume();
+	                 
+	            } 
+
+			}
+		});
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(243, 273, 222, 26);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
+		txtCorreo = new JTextField();
+		txtCorreo.setBounds(243, 273, 222, 26);
+		contentPane.add(txtCorreo);
+		txtCorreo.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(243, 330, 222, 26);
-		contentPane.add(textField_4);
-		textField_4.setColumns(10);
+		txtCarrera = new JTextField();
+		txtCarrera.setBounds(243, 330, 222, 26);
+		contentPane.add(txtCarrera);
+		txtCarrera.setColumns(10);
+		txtCarrera.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			    char c=e.getKeyChar(); 
+		          if(Character.isDigit(c)) { 
+		              getToolkit().beep(); 
+		              JOptionPane.showMessageDialog(null, "ERROR 1006: SOLO SON PERMITIDAS LAS LETRAS");
+		              e.consume();   
+		          }
+			}
+		});
 		
 		JButton btnRegistrate = new JButton("Registrate");
 		btnRegistrate.setBackground(new Color(0, 153, 255));
 		btnRegistrate.setForeground(new Color(0, 0, 0));
 		btnRegistrate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int carne=Integer.parseInt(textField_2.getText());
-				String password=textField_1.getText();
-				String nombre=textField.getText();
-				String correo=textField_3.getText();
-				String carrera=textField_4.getText();
+				int carne=Integer.parseInt(txtCarne.getText());
+				String password=txtContrasena.getText();
+				String nombre=txtNombre.getText();
+				String correo=txtCorreo.getText();
+				String carrera=txtCarrera.getText();
 				
 				base.agregarUsuario(carne, password, nombre, correo, carrera);
 				//JOptionPane.showMessageDialog(this,"Gracias por registrarse "+nombre+"","",JOptionPane.INFORMATION_MESSAGE);
