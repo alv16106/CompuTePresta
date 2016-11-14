@@ -19,14 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import javax.swing.ImageIcon;
-/**
- * @author rodri_000
- *
- */
-/**
- * @author rodri_000
- *
- */
+
 public class InicioGU extends JFrame {
 
 	private JPanel contentPane;

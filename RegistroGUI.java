@@ -152,7 +152,7 @@ public class RegistroGUI extends JFrame {
 		          }
 			}
 		});
-		
+	//Registrar 
 		JButton btnRegistrate = new JButton("Registrate");
 		btnRegistrate.setBackground(new Color(0, 153, 255));
 		btnRegistrate.setForeground(new Color(0, 0, 0));

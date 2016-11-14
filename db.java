@@ -30,7 +30,7 @@ public class db {
 	/**
 	 * @param carne
 	 * @param pass
-	 * @return
+	 * @return nos dice si entra o no a su usuario.
 	 */
 	public boolean log(int carne, String pass){
 		try{
@@ -78,6 +78,7 @@ public class db {
 	 * @param nombre
 	 * @param correo
 	 * @param carrera
+	 * Agrega un usuario nuevo a la base de datos
 	 */
 	public void agregarUsuario(int carne, String pass, String nombre,String correo, String carrera) {
 		        try
@@ -99,6 +100,13 @@ public class db {
 		        }
 		    }
 	
+	/**
+	 * @param descripcion
+	 * @param tiempoPrestamo
+	 * @param categoria
+	 * @param prestamista
+	 * Ingreso de elementos  a la base de datos
+	 */
 	public void agregarElemento(String descripcion, String tiempoPrestamo, String categoria,String prestamista){
 		try
 		{
@@ -123,10 +131,12 @@ public class db {
 	
 	/**
 	 * @param carnet
+	 * Envia correo a el usuario al momento de olvidar la contraseña 
 	 */
 	public void enviarCorreo(int carnet){
 		try
         {
+
         	Class.forName("com.mysql.jdbc.Driver").newInstance();
             Connection con = DriverManager.getConnection(url, user, password);
             Statement stt = con.createStatement();
@@ -149,7 +159,7 @@ public class db {
     		props.put("mail.smtp.starttls.enable", "true");
     		props.put("mail.smtp.host", "smtp.gmail.com");
     		props.put("mail.smtp.port", "587");
-
+    		
     		Session session = Session.getInstance(props,
     		  new javax.mail.Authenticator() {
     			protected PasswordAuthentication getPasswordAuthentication() {
@@ -158,7 +168,7 @@ public class db {
     		  });
 
     		try {
-
+  //Envio de mensaje al olvidar el usuario
     			Message message = new MimeMessage(session);
     			message.setFrom(new InternetAddress("computepresta@gmail.com"));
     			message.setRecipients(Message.RecipientType.TO,
