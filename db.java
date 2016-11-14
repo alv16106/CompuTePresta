@@ -96,6 +96,22 @@ public class db {
 		}
         
 	}
+	public void Filtro(String filtro){
+		try{
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			Connection con = DriverManager.getConnection(url,user,password);
+			Statement stt = con.createStatement();
+			
+			stt.execute("USE CompuTePresta");
+			stt.executeQuery("SELECT * FROM articulo WHERE categoria = "+filtro+" ");
+			stt.close();
+			con.close();
+			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	
 	public DefaultTableModel crearmodelo(){
 		DefaultTableModel model = new DefaultTableModel();

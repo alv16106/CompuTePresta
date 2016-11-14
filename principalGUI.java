@@ -162,6 +162,8 @@ public class principalGUI extends JFrame {
 		JButton btnBuscar = new JButton("\u00A1Explorar los pedidos!");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String filtro = comboBoxCategoriaDar.getSelectedItem().toString();
+				base.Filtro(filtro);
 			}
 		});
 		btnBuscar.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 15));
