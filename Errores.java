@@ -3,7 +3,7 @@
  * @author toshibas
  *
  */
-public class Errores {
+public class errores {
 
 	/**
 	 * @param a
