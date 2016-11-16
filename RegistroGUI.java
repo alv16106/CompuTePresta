@@ -158,6 +158,12 @@ public class RegistroGUI extends JFrame {
 		btnRegistrate.setForeground(new Color(0, 0, 0));
 		btnRegistrate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				Errores errores = new Errores();
+				
+				errores.Error1001(txtCarne.getText());
+			
+				
 				int carne=Integer.parseInt(txtCarne.getText());
 				String password=txtContrasena.getText();
 				String nombre=txtNombre.getText();
