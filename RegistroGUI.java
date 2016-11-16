@@ -121,13 +121,26 @@ public class RegistroGUI extends JFrame {
 		txtCarne.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-	            char c=e.getKeyChar();  
-	            if(Character.isLetter(c)) { 
-	                getToolkit().beep(); 
-	                JOptionPane.showMessageDialog(null, "ERROR 1001: SOLO SON PERMITIDAS LOS NUMEROS");
-	                e.consume();
-	                 
-	            } 
+				
+				
+				
+				errores error = new errores();
+				boolean deci = error.Error1001(txtCarne.getText());
+				if (deci==false){
+					JOptionPane.showMessageDialog(null, "ERROR 1001: SOLO SON PERMITIDAS LOS NUMEROS");
+				}
+				
+				
+				
+				
+				
+//	            char c=e.getKeyChar();         
+//	            if(Character.isLetter(c)) { 
+//	                getToolkit().beep(); 
+//	                JOptionPane.showMessageDialog(null, "ERROR 1001: SOLO SON PERMITIDAS LOS NUMEROS");
+//	                e.consume();
+//	                 
+//	            } 
 
 			}
 		});
@@ -152,18 +165,12 @@ public class RegistroGUI extends JFrame {
 		          }
 			}
 		});
-	//Registrar 
+		
 		JButton btnRegistrate = new JButton("Registrate");
 		btnRegistrate.setBackground(new Color(0, 153, 255));
 		btnRegistrate.setForeground(new Color(0, 0, 0));
 		btnRegistrate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				Errores errores = new Errores();
-				
-				errores.Error1001(txtCarne.getText());
-			
-				
 				int carne=Integer.parseInt(txtCarne.getText());
 				String password=txtContrasena.getText();
 				String nombre=txtNombre.getText();
