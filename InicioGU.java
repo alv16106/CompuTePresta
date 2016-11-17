@@ -69,9 +69,9 @@ public class InicioGU extends JFrame {
 		contentPane.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
-		JLabel lblUsuario = new JLabel("Usuario");
+		JLabel lblUsuario = new JLabel("Carn\u00E9");
 		lblUsuario.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
-		lblUsuario.setBounds(173, 96, 69, 20);
+		lblUsuario.setBounds(161, 99, 69, 20);
 		contentPane.add(lblUsuario);
 		
 		JLabel lblPassword = new JLabel("Contrase\u00F1a");
@@ -95,16 +95,16 @@ public class InicioGU extends JFrame {
 					setVisible(false);
 					
 				}else{
-					JOptionPane.showMessageDialog(login,"Error: No se ha podido iniciar sesion","Error de inicio",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(login,"Error 1007: SU CONTRASEÑA ES INCORRECTA O USARIO","Error de inicio",JOptionPane.ERROR_MESSAGE);
 				}
 				
 			}
 		});
-		btnIngresar.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 19));
-		btnIngresar.setBounds(109, 269, 152, 37);
+		btnIngresar.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 23));
+		btnIngresar.setBounds(361, 241, 152, 69);
 		contentPane.add(btnIngresar);
 		
-		JButton btnRegistro = new JButton("Registrate");
+		JButton btnRegistro = new JButton("<html>\r\n<p align = center>Registrate <br> <p align = center>con nosotros\r\n</html>\r\n");
 		btnRegistro.setBackground(Color.ORANGE);
 		btnRegistro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -113,7 +113,7 @@ public class InicioGU extends JFrame {
 			}
 		});
 		btnRegistro.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 19));
-		btnRegistro.setBounds(349, 269, 152, 37);
+		btnRegistro.setBounds(109, 241, 152, 69);
 		contentPane.add(btnRegistro);
 		
 		JButton btnOlvidar = new JButton("Olvide mi contrase\u00F1a ");
@@ -123,8 +123,10 @@ public class InicioGU extends JFrame {
 				String whatTheUserEntered = JOptionPane.showInputDialog("Ingrese su carne:");
 				if (whatTheUserEntered == null) {
 				    System.out.println("The user canceled");
+				}else{
+					base.enviarCorreo(Integer.parseInt(whatTheUserEntered), "Al parecer has olvidado tu contrasena","El usuario xxx ha respondido a tu peticion de ",1);
 				}
-				base.enviarCorreo(Integer.parseInt(whatTheUserEntered));
+				
 				
 			}
 		});
@@ -137,5 +139,10 @@ public class InicioGU extends JFrame {
 		txtPassword.setBackground(Color.WHITE);
 		txtPassword.setBounds(270, 133, 176, 26);
 		contentPane.add(txtPassword);
+		
+		JLabel lblBienvenidoACompu = new JLabel("Bienvenido a Compu Te Presta ");
+		lblBienvenidoACompu.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 30));
+		lblBienvenidoACompu.setBounds(126, 33, 387, 20);
+		contentPane.add(lblBienvenidoACompu);
 	}
 }

@@ -35,43 +35,43 @@ public class db {
 	 * @return nos dice si entra o no a su usuario.
 	 */
 	public boolean log(int carne, String pass){
-		try{
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Connection con = DriverManager.getConnection(url, user, password);
-            Statement stt = con.createStatement();
-            
-            //BASE A UTILIZAR
-            stt.execute("USE CompuTePresta");
-            
-            /**
-             * Buscar usuario y contrasena
-             */
-            ResultSet res = stt.executeQuery("SELECT * FROM usuario WHERE carne="+carne+" AND password='"+pass+"'");
-            
-            int log=0;
-            while (res.next())
-            {
-                log++;
-                System.out.println(res.getString("nombre"));
-                this.prestamista=res.getString("carne");
-                System.out.println(prestamista);
-            }
-            if (log==1){
-                res.close();
-                stt.close();
-                con.close();
-            	return true;
-            }else{
-                res.close();
-                stt.close();
-                con.close();
-            	return false;
-            }
-
-		}catch (Exception e){
-			return false;
-		}
-		
+			try{
+				Class.forName("com.mysql.jdbc.Driver").newInstance();
+	            Connection con = DriverManager.getConnection(url, user, password);
+	            Statement stt = con.createStatement();
+	            
+	            //BASE A UTILIZAR
+	            stt.execute("USE CompuTePresta");
+	            
+	            /**
+	             * Buscar usuario y contrasena
+	             */
+	            ResultSet res = stt.executeQuery("SELECT * FROM usuario WHERE carne="+carne+" AND password='"+pass+"'");
+	            
+	            int log=0;
+	            while (res.next())
+	            {
+	                log++;
+	                System.out.println(res.getString("nombre"));
+	                this.prestamista=res.getString("carne");
+	                System.out.println(prestamista);
+	            }
+	            if (log==1){
+	                res.close();
+	                stt.close();
+	                con.close();
+	            	return true;
+	            }else{
+	                res.close();
+	                stt.close();
+	                con.close();
+	            	return false;
+	            }
+	
+			}catch (Exception e){
+				return false;
+			}
+			
 	}
 	
 	static ArrayList<Elemento> ListaElementos(){
@@ -84,8 +84,9 @@ public class db {
             //BASE A UTILIZAR
             stt.execute("USE CompuTePresta");
             ResultSet res = stt.executeQuery("SELECT * FROM articulo");
-            Elemento reusable = new Elemento();
+            
             while (res.next()){
+            	Elemento reusable = new Elemento();
             	reusable.setElemento(res.getString("descripcion"), String.valueOf(res.getInt("tiempoDePrestamo")), res.getString("categoria"), res.getInt("idprestamista"));
             	elementos.add(reusable);
             }
@@ -198,7 +199,7 @@ public class db {
 	 * @param carnet
 	 * Envia correo a el usuario al momento de olvidar la contraseña 
 	 */
-	public void enviarCorreo(int carnet){
+	public void enviarCorreo(int carnet, String sujeto, String mensaje, int x){
 		try
         {
 
@@ -226,11 +227,11 @@ public class db {
     		props.put("mail.smtp.port", "587");
     		
     		Session session = Session.getInstance(props,
-    		  new javax.mail.Authenticator() {
+    		 new javax.mail.Authenticator() {
     			protected PasswordAuthentication getPasswordAuthentication() {
     				return new PasswordAuthentication(username, password);
     			}
-    		  });
+    		 });
 
     		try {
   //Envio de mensaje al olvidar el usuario
@@ -238,8 +239,14 @@ public class db {
     			message.setFrom(new InternetAddress("computepresta@gmail.com"));
     			message.setRecipients(Message.RecipientType.TO,
     				InternetAddress.parse(destino));
-    			message.setSubject("Al parecer has olvidado tu contrasena!");
-    			message.setText("Tu contrasena actual es,\n "+vc+"\n no la olvides la proxima vez!");
+    			if (x==0){
+    				message.setSubject(sujeto);
+        			message.setText("Tu contrasena actual es,\n "+vc+"\n no la olvides la proxima vez!");
+    			}else{
+    				message.setSubject(sujeto);
+        			message.setText(mensaje);
+    			}
+    			
 
     			Transport.send(message);
 
@@ -283,6 +290,8 @@ public class db {
         	
         }
 	}
+	
+
 		
 	}
 

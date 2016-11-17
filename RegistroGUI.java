@@ -121,26 +121,13 @@ public class RegistroGUI extends JFrame {
 		txtCarne.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				
-				
-				
-				errores error = new errores();
-				boolean deci = error.Error1001(txtCarne.getText());
-				if (deci==false){
-					JOptionPane.showMessageDialog(null, "ERROR 1001: SOLO SON PERMITIDAS LOS NUMEROS");
-				}
-				
-				
-				
-				
-				
-//	            char c=e.getKeyChar();         
-//	            if(Character.isLetter(c)) { 
-//	                getToolkit().beep(); 
-//	                JOptionPane.showMessageDialog(null, "ERROR 1001: SOLO SON PERMITIDAS LOS NUMEROS");
-//	                e.consume();
-//	                 
-//	            } 
+	            char c=e.getKeyChar();  
+	            if(Character.isLetter(c)) { 
+	                getToolkit().beep(); 
+	                JOptionPane.showMessageDialog(null, "ERROR 1001: SOLO SON PERMITIDAS LOS NUMEROS");
+	                e.consume();
+	                 
+	            } 
 
 			}
 		});
@@ -165,22 +152,46 @@ public class RegistroGUI extends JFrame {
 		          }
 			}
 		});
-		
+	//Registrar 
 		JButton btnRegistrate = new JButton("Registrate");
 		btnRegistrate.setBackground(new Color(0, 153, 255));
 		btnRegistrate.setForeground(new Color(0, 0, 0));
 		btnRegistrate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int carne=Integer.parseInt(txtCarne.getText());
-				String password=txtContrasena.getText();
-				String nombre=txtNombre.getText();
-				String correo=txtCorreo.getText();
-				String carrera=txtCarrera.getText();
 				
-				base.agregarUsuario(carne, password, nombre, correo, carrera);
-				//JOptionPane.showMessageDialog(this,"Gracias por registrarse "+nombre+"","",JOptionPane.INFORMATION_MESSAGE);
-				setVisible(false);
-				//reg.setState(reg.ICONIFIED);
+				
+			//Errores 
+				Errores errores = new Errores();
+			
+				boolean d,f,g,h,i;
+				d = errores.BlancoNumero(txtCarne.getText());	
+				f = errores.Letra(txtNombre.getText());
+				g = errores.Letra(txtContrasena.getText());
+				h = errores.Letra(txtCorreo.getText());
+				i = errores.Letra(txtCarrera.getText());
+				if(!d || f || g || h || i){
+					JOptionPane.showMessageDialog(null, "ERROR 1005: INGRESE TODOS LOS CAMPOS");
+				}
+				else {
+					
+					boolean x;
+					x = errores.Existe(Integer.parseInt(txtCarne.getText()));
+					if(x){
+						JOptionPane.showMessageDialog(null, "ERROR 1002:EL USUARIO YA EXISTE");
+					}
+					else{
+						int carne=Integer.parseInt(txtCarne.getText());
+						String password=txtContrasena.getText();
+						String nombre=txtNombre.getText();
+						String correo=txtCorreo.getText();
+						String carrera=txtCarrera.getText();
+						base.agregarUsuario(carne, password, nombre, correo, carrera);
+						//JOptionPane.showMessageDialog(this,"Gracias por registrarse "+nombre+"","",JOptionPane.INFORMATION_MESSAGE);
+						setVisible(false);
+						//reg.setState(reg.ICONIFIED);
+					}
+				}
+				
 			}
 		});
 		btnRegistrate.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
