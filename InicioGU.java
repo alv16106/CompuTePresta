@@ -87,8 +87,22 @@ public class InicioGU extends JFrame {
 		 */
 		new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+		
+				Errores errores = new Errores();
+
+				boolean a,b;
+				a = errores.Letra(txtUsuario.getText());
+				b = errores.Letra(txtPassword.getText());
+				
+				
+				if (a || b){
+					JOptionPane.showMessageDialog(null, "ERROR 1005: INGRESE TODOS LOS CAMPOS");
+				} 
+				else {
+				
 				int user = Integer.parseInt(txtUsuario.getText());
 				String pass = txtPassword.getText();
+				
 				if(base.log(user, pass)){
 					JOptionPane.showMessageDialog(login,"Gracias por visitarnos de nuevo!","Ingreso exitoso",JOptionPane.INFORMATION_MESSAGE);
 					principal.setVisible(true);
@@ -97,6 +111,9 @@ public class InicioGU extends JFrame {
 				}else{
 					JOptionPane.showMessageDialog(login,"Error 1007: SU CONTRASEÑA ES INCORRECTA O USARIO","Error de inicio",JOptionPane.ERROR_MESSAGE);
 				}
+				
+				}
+				
 				
 			}
 		});
