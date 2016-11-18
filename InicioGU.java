@@ -29,6 +29,7 @@ public class InicioGU extends JFrame {
 	private JPasswordField txtPassword;
 	private RegistroGUI reg;
 	private principalGUI principal;
+	private int carnetdelusuario;
 
 
 	
@@ -49,6 +50,7 @@ public class InicioGU extends JFrame {
 	 * Create the frame.
 	 */
 	public InicioGU() {
+		carnetdelusuario=0;
 		setBackground(Color.WHITE);
 		setForeground(Color.RED);
 		db base = new db();
@@ -87,9 +89,9 @@ public class InicioGU extends JFrame {
 		 */
 		new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		
+				
 				Errores errores = new Errores();
-
+				
 				boolean a,b;
 				a = errores.Letra(txtUsuario.getText());
 				b = errores.Letra(txtPassword.getText());
@@ -104,10 +106,10 @@ public class InicioGU extends JFrame {
 				String pass = txtPassword.getText();
 				
 				if(base.log(user, pass)){
+					base.log(user, pass);
 					JOptionPane.showMessageDialog(login,"Gracias por visitarnos de nuevo!","Ingreso exitoso",JOptionPane.INFORMATION_MESSAGE);
 					principal.setVisible(true);
 					setVisible(false);
-					
 				}else{
 					JOptionPane.showMessageDialog(login,"Error 1007: SU CONTRASEÑA ES INCORRECTA O USARIO","Error de inicio",JOptionPane.ERROR_MESSAGE);
 				}
@@ -141,7 +143,7 @@ public class InicioGU extends JFrame {
 				if (whatTheUserEntered == null) {
 				    System.out.println("The user canceled");
 				}else{
-					base.enviarCorreo(Integer.parseInt(whatTheUserEntered), "Al parecer has olvidado tu contrasena","El usuario xxx ha respondido a tu peticion de ",1);
+					base.enviarCorreo(Integer.parseInt(whatTheUserEntered), "Al parecer has olvidado tu contrasena","El usuario xxx ha respondido a tu peticion de ",0);
 				}
 				
 				

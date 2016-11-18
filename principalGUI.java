@@ -37,6 +37,7 @@ public class principalGUI extends JFrame {
 	private db base;
 	private JTextField txtCarnePedir;
 	private JComboBox comboBoxCategoriaDar;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -84,13 +85,13 @@ public class principalGUI extends JFrame {
 		
 		JLabel lblCategoriaDar = new JLabel("Categor\u00EDa:");
 		lblCategoriaDar.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 15));
-		lblCategoriaDar.setBounds(244, 270, 64, 26);
+		lblCategoriaDar.setBounds(226, 276, 64, 26);
 		panelDar.add(lblCategoriaDar);
 		
 		comboBoxCategoriaDar = new JComboBox();
 		comboBoxCategoriaDar.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 15));
 		comboBoxCategoriaDar.setModel(new DefaultComboBoxModel(new String[]{"Libros","Tutoria","Electronicos","Utiles"}));
-		comboBoxCategoriaDar.setBounds(336, 273, 114, 20);
+		comboBoxCategoriaDar.setBounds(318, 279, 114, 20);
 		panelDar.add(comboBoxCategoriaDar);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -100,7 +101,7 @@ public class principalGUI extends JFrame {
 		JButton btnBuscar = new JButton("Dar!");
 		btnBuscar.addActionListener(new botonlist());
 		btnBuscar.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
-		btnBuscar.setBounds(236, 309, 214, 26);
+		btnBuscar.setBounds(218, 315, 214, 26);
 		panelDar.add(btnBuscar);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -118,7 +119,7 @@ public class principalGUI extends JFrame {
 				table.setModel(base.crearmodelo());
 			}
 		});
-		btnActualizar.setBounds(51, 281, 148, 54);
+		btnActualizar.setBounds(41, 293, 148, 54);
 		panelDar.add(btnActualizar);
 		
 		JLabel lblDeseeasAportarA = new JLabel("DESEEAS AYUDAR A UN COMPA\u00D1ERO?");
@@ -129,6 +130,15 @@ public class principalGUI extends JFrame {
 		JLabel lblEligue = new JLabel("Elige una de las opciones si deseas aportar");
 		lblEligue.setBounds(180, 30, 433, 20);
 		panelDar.add(lblEligue);
+		
+		JLabel lblMiCarnet = new JLabel("Confirma tu contrasena:");
+		lblMiCarnet.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 15));
+		lblMiCarnet.setBounds(466, 293, 147, 14);
+		panelDar.add(lblMiCarnet);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(466, 320, 147, 20);
+		panelDar.add(passwordField);
 		
 		JPanel panelPedir = new JPanel();
 		panelPedir.setBorder(new CompoundBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null), null));
@@ -335,8 +345,20 @@ public class principalGUI extends JFrame {
 	            System.out.println(carne);
 	            String d=table.getValueAt(x, 0).toString();
 	            System.out.println(d);
-	            String peticion = "El usuario xxx ha respondido a tu peticion de " + d;
+	            
+	            
+	            Errores errores = new Errores();
+	            boolean w;
+	            w = errores.Letra(passwordField.getText());
+	            
+	            if (w){
+	            	JOptionPane.showMessageDialog(null, "ERROR 1005: INGRESE TODOS LOS CAMPOS");
+	            }
+	            else{
+	            String contra= base.tomarInfo("password",passwordField.getText());
+	            String peticion = "El usuario "+contra+" ha respondido a tu peticion de " + d;
 	            base.enviarCorreo(carne,"Alguien respondio a tu pedido!", peticion, 2);
+	            }
 	        }
 	        
 	    }

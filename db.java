@@ -19,7 +19,7 @@ public class db {
 	static String url;
 	static String user;
 	static String password;
-	static String prestamista;
+	private String prestamista;
 	
 	public db(){
 		url="jdbc:mysql://localhost:3306/";
@@ -36,6 +36,7 @@ public class db {
 	 */
 	public boolean log(int carne, String pass){
 			try{
+				
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
 	            Connection con = DriverManager.getConnection(url, user, password);
 	            Statement stt = con.createStatement();
@@ -53,7 +54,7 @@ public class db {
 	            {
 	                log++;
 	                System.out.println(res.getString("nombre"));
-	                this.prestamista=res.getString("carne");
+	                
 	                System.out.println(prestamista);
 	            }
 	            if (log==1){
@@ -290,6 +291,26 @@ public class db {
         	
         }
 	}
+	
+public String tomarInfo(String parametro, String compa){
+	String resultado = "";
+	try{
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+        Connection con = DriverManager.getConnection(url, user, password);
+        Statement stt = con.createStatement();
+        
+        //BASE A UTILIZAR
+        stt.execute("USE CompuTePresta");
+        
+        ResultSet res = stt.executeQuery("SELECT * FROM usuario WHERE password = "+compa);
+        while(res.next()){
+        	resultado= res.getString("nombre")+", con el que se puede comunicar aqui: "+res.getString("correo");
+        }
+        return resultado;
+	}catch (Exception e){
+		return resultado;
+	}
+}
 	
 
 		
