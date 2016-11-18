@@ -121,6 +121,11 @@ public class db {
 			}
 	}
 	
+	/**
+	 * @param t
+	 * @param filtro
+	 * @return
+	 */
 	public DefaultTableModel crearmodelo(int t, String filtro){
 		DefaultTableModel model = new DefaultTableModel();
 		Object[] titulos = new Object[4];
