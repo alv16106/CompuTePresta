@@ -67,7 +67,7 @@ public class principalGUI extends JFrame {
 		//principalGUI principal=new principalGUI();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 692, 451);
+		setBounds(100, 100, 692, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -101,7 +101,7 @@ public class principalGUI extends JFrame {
 		JButton btnBuscar = new JButton("Dar!");
 		btnBuscar.addActionListener(new botonlist());
 		btnBuscar.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
-		btnBuscar.setBounds(218, 315, 214, 26);
+		btnBuscar.setBounds(218, 383, 214, 26);
 		panelDar.add(btnBuscar);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -110,13 +110,13 @@ public class principalGUI extends JFrame {
 		
 		table = new JTable();
 		scrollPane_1.setViewportView(table);
-		table.setModel(base.crearmodelo());
+		table.setModel(base.crearmodelo(1,""));
 		
 		JButton btnActualizar = new JButton("Actualizar");
 		btnActualizar.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				table.setModel(base.crearmodelo());
+				table.setModel(base.crearmodelo(1,""));
 			}
 		});
 		btnActualizar.setBounds(41, 293, 148, 54);
@@ -139,6 +139,15 @@ public class principalGUI extends JFrame {
 		passwordField = new JPasswordField();
 		passwordField.setBounds(466, 320, 147, 20);
 		panelDar.add(passwordField);
+		
+		JButton btnFiltro = new JButton("Filtrar");
+		btnFiltro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table.setModel(base.crearmodelo(8, comboBoxCategoriaDar.getSelectedItem().toString()));
+			}
+		});
+		btnFiltro.setBounds(281, 313, 89, 23);
+		panelDar.add(btnFiltro);
 		
 		JPanel panelPedir = new JPanel();
 		panelPedir.setBorder(new CompoundBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null), null));

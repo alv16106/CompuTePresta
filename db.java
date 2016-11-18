@@ -98,24 +98,30 @@ public class db {
 		}
         
 	}
-	public void Filtro(String filtro){
-		try{
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			Connection con = DriverManager.getConnection(url,user,password);
-			Statement stt = con.createStatement();
-			
-			stt.execute("USE CompuTePresta");
-			stt.executeQuery("SELECT * FROM articulo WHERE categoria = "+filtro+" ");
-			stt.close();
-			con.close();
-			
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
+	static ArrayList<Elemento> Filtro(String filtro){
+		ArrayList<Elemento> elementos = new ArrayList<Elemento>();
+			try{
+				Class.forName("com.mysql.jdbc.Driver").newInstance();
+	            Connection con = DriverManager.getConnection(url, user, password);
+	            Statement stt = con.createStatement();
+	            
+	            //BASE A UTILIZAR
+	            stt.execute("USE CompuTePresta");
+	            ResultSet res = stt.executeQuery("SELECT * FROM articulo WHERE categoria = '"+filtro+"'");
+	            
+	            while (res.next()){
+	            	Elemento reusable = new Elemento();
+	            	reusable.setElemento(res.getString("descripcion"), String.valueOf(res.getInt("tiempoDePrestamo")), res.getString("categoria"), res.getInt("idprestamista"));
+	            	elementos.add(reusable);
+	            }
+	            
+	            return elementos;
+			}catch (Exception e){
+				return elementos;
+			}
 	}
 	
-	public DefaultTableModel crearmodelo(){
+	public DefaultTableModel crearmodelo(int t, String filtro){
 		DefaultTableModel model = new DefaultTableModel();
 		Object[] titulos = new Object[4];
         
@@ -126,16 +132,29 @@ public class db {
         model.setColumnIdentifiers(titulos);
         
         Object[] rowData = new Object[4];
-        
-        for(int i = 0; i < ListaElementos().size(); i++){
-            
-            rowData[0] = ListaElementos().get(i).getDescripcion();
-             rowData[1] = ListaElementos().get(i).getTiempoPrestamo() + "dias";
-              rowData[2] = ListaElementos().get(i).getCategoria();
-               rowData[3] = ListaElementos().get(i).getPrestamista();
-               
-               model.addRow(rowData);
+        if (t==1){
+        	for(int i = 0; i < ListaElementos().size(); i++){
+                
+                rowData[0] = ListaElementos().get(i).getDescripcion();
+                 rowData[1] = ListaElementos().get(i).getTiempoPrestamo() + "dias";
+                  rowData[2] = ListaElementos().get(i).getCategoria();
+                   rowData[3] = ListaElementos().get(i).getPrestamista();
+                   
+                   model.addRow(rowData);
+            }
+        }else{
+        	ArrayList<Elemento> e = Filtro(filtro);
+        	for(int i = 0; i < e.size(); i++){
+                
+                rowData[0] = e.get(i).getDescripcion();
+                 rowData[1] = e.get(i).getTiempoPrestamo() + "dias";
+                  rowData[2] = e.get(i).getCategoria();
+                   rowData[3] = e.get(i).getPrestamista();
+                   
+                   model.addRow(rowData);
+            }
         }
+        
 		return model;
 	}
 
